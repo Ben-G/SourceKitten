@@ -34,16 +34,10 @@ struct DocCommand: CommandType {
         let xcodeBuildArguments = Array<String>(args[xcodeBuildArgumentsStart..<args.count])
         let module = Module(xcodeBuildArguments: xcodeBuildArguments, name: moduleName)
 
-        // FIXME: Don't spawn new processes once this SourceKit bug is fixed:
-        // https://github.com/jpsim/sourcekitten/pull/19#issuecomment-69715853
-        if let docs = module?.docsBySpawningNewProcesses {
-            println(toJSON(docs))
+        if let docs = module?.docs {
+            println(docs)
             return success(())
         }
-//        if let docs = module?.docs {
-//            println(docs)
-//            return success(())
-//        }
         return failure(SourceKittenError.DocFailed.error)
     }
 
