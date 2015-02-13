@@ -258,7 +258,7 @@ public struct File {
     :returns: True if path is nil or if path is equal to `key.filepath` in the input dictionary.
     */
     internal func shouldTreatAsSameFile(dictionary: XPCDictionary) -> Bool {
-	return path == SwiftDocKey.getFilePath(dictionary)
+        return path == SwiftDocKey.getFilePath(dictionary)
     }
 }
 

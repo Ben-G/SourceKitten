@@ -11,8 +11,6 @@ import Foundation
 extension NSString {
     /**
     Returns true if self is an Objective-C header file.
-
-    :returns: True if self is an Objective-C header file.
     */
     public func isObjectiveCHeaderFile() -> Bool {
         return contains(["h", "hpp", "hh"], pathExtension)
@@ -20,8 +18,6 @@ extension NSString {
 
     /**
     Returns true if self is a Swift file.
-
-    :returns: True if self is a Swift file.
     */
     public func isSwiftFile() -> Bool {
         return pathExtension == "swift"
@@ -29,8 +25,6 @@ extension NSString {
 
     /**
     Returns self represented as an absolute path.
-
-    :returns: self represented as an absolute path.
     */
     public func absolutePathRepresentation() -> String {
         if absolutePath {
@@ -41,8 +35,6 @@ extension NSString {
 
     /**
     Returns offsets of all the line breaks in the current string.
-
-    :returns: Line breaks.
     */
     public func lineBreaks() -> [Int] {
         var lineBreaks = [Int]()
