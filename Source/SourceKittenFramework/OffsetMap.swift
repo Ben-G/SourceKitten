@@ -65,7 +65,7 @@ extension File {
         }
         // Recurse!
         for subDict in SwiftDocKey.getSubstructure(dictionary)! {
-            offsetMap = mapOffsets(subDict as XPCDictionary, offsetMap: offsetMap)
+            offsetMap = mapOffsets(subDict as! XPCDictionary, offsetMap: offsetMap)
         }
         return offsetMap
     }

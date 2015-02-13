@@ -34,7 +34,7 @@ extension NSString {
     */
     public func absolutePathRepresentation() -> String {
         if absolutePath {
-            return self
+            return self as! String
         }
         return NSString.pathWithComponents([NSFileManager.defaultManager().currentDirectoryPath, self]).stringByStandardizingPath
     }
@@ -70,7 +70,7 @@ extension NSString {
     */
     public func filteredSubstring(start: Int, end: Int) -> String {
         let range = NSRange(location: start, length: end - start - 1)
-        let unwantedSet = NSCharacterSet.whitespaceAndNewlineCharacterSet().mutableCopy() as NSMutableCharacterSet
+        let unwantedSet = NSCharacterSet.whitespaceAndNewlineCharacterSet().mutableCopy() as! NSMutableCharacterSet
         unwantedSet.addCharactersInString("{")
         return substringWithRange(range).stringByTrimmingCharactersInSet(unwantedSet)
     }
@@ -91,7 +91,7 @@ extension NSString {
 
         let regex = NSRegularExpression(pattern: "(///.*\\n|\\*/\\n)", options: nil, error: nil)! // Safe to force unwrap
         let range = NSRange(location: 0, length: length)
-        let matches = regex.matchesInString(self, options: nil, range: range) as [NSTextCheckingResult]
+        let matches = regex.matchesInString(self as! String, options: nil, range: range) as! [NSTextCheckingResult]
 
         return compact(matches.map({ match in
             identifierOffsets.filter({ $0 >= match.range.location }).first

@@ -40,6 +40,7 @@ public struct File {
     :param: contents File contents.
     */
     public init(contents: NSString) {
+        path = nil
         self.contents = contents
         lineBreaks = contents.lineBreaks()
     }
@@ -153,9 +154,9 @@ public struct File {
     private func newSubstructure(dictionary: XPCDictionary, cursorInfoRequest: xpc_object_t?) -> XPCArray? {
         return SwiftDocKey.getSubstructure(dictionary)?
         .filter({
-            return isDeclarationOrCommentMark($0 as XPCDictionary)
+            return isDeclarationOrCommentMark($0 as! XPCDictionary)
         }).map {
-            return self.processDictionary($0 as XPCDictionary, cursorInfoRequest: cursorInfoRequest)
+            return self.processDictionary($0 as! XPCDictionary, cursorInfoRequest: cursorInfoRequest)
         }
     }
 
@@ -226,7 +227,7 @@ public struct File {
             var substructure = SwiftDocKey.getSubstructure(parent)!
             var insertIndex = substructure.count
             for (index, structure) in enumerate(substructure.reverse()) {
-                if SwiftDocKey.getOffset(structure as XPCDictionary)! < offset {
+                if SwiftDocKey.getOffset(structure as! XPCDictionary)! < offset {
                     break
                 }
                 insertIndex = substructure.count - index
@@ -238,7 +239,7 @@ public struct File {
         for key in parent.keys {
             if var subArray = parent[key] as? XPCArray {
                 for i in 0..<subArray.count {
-                    if let subDict = insertDoc(doc, parent: subArray[i] as XPCDictionary, offset: offset) {
+                    if let subDict = insertDoc(doc, parent: subArray[i] as! XPCDictionary, offset: offset) {
                         subArray[i] = subDict
                         parent[key] = subArray
                         return parent
@@ -291,7 +292,7 @@ internal func replaceUIDsWithSourceKitStrings(var dictionary: XPCDictionary) -> 
             }
         } else if var array = dictionary[key] as? XPCArray {
             for (index, dict) in enumerate(array) {
-                array[index] = replaceUIDsWithSourceKitStrings(dict as XPCDictionary)
+                array[index] = replaceUIDsWithSourceKitStrings(dict as! XPCDictionary)
             }
             dictionary[key] = array
         } else if let dict = dictionary[key] as? XPCDictionary {

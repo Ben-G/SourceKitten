@@ -48,7 +48,7 @@ class StringTests: XCTestCase {
 
     func testFilteredSubstring() {
         let expected = "public func myFunc()"
-        let end = countElements(expected) + 4 // 4 == 2 spaces before + 2 characters after (until newline)
+        let end = count(expected) + 4 // 4 == 2 spaces before + 2 characters after (until newline)
         let actual = ("  \(expected) {\n}" as NSString).filteredSubstring(0, end: end)
         XCTAssertEqual(expected, actual, "should extract function declaration from source text")
     }

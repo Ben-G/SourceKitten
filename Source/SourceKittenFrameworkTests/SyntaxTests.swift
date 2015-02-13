@@ -34,7 +34,7 @@ class SyntaxTests: XCTestCase {
 
         let syntaxJSON = syntaxMap.description
         var error: NSError? = nil
-        let jsonArray = NSJSONSerialization.JSONObjectWithData(syntaxJSON.dataUsingEncoding(NSUTF8StringEncoding)!, options: nil, error: &error) as NSArray?
+        let jsonArray = NSJSONSerialization.JSONObjectWithData(syntaxJSON.dataUsingEncoding(NSUTF8StringEncoding)!, options: nil, error: &error) as! NSArray?
         XCTAssertNil(error, "JSON should be propery parsed")
         XCTAssertNotNil(jsonArray, "JSON should be propery parsed")
         if let jsonArray = jsonArray {

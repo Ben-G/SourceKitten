@@ -121,7 +121,6 @@ public enum Request {
             return replaceUIDsWithSourceKitStrings(fromXPC(response))
         }
         fatalError("SourceKit response nil for request \(self)")
-        return XPCDictionary() // Keep the compiler happy 😄
     }
 }
 
