@@ -9,7 +9,7 @@
 import Foundation
 
 /// The domain for all errors originating within SourceKitten.
-let SourceKittenErrorDomain: NSString = "com.sourcekitten.SourceKitten"
+let SourceKittenErrorDomain = "com.sourcekitten.SourceKitten"
 
 /// Possible error codes with `SourceKittenErrorDomain`.
 enum SourceKittenErrorCode: Int {
@@ -36,15 +36,15 @@ enum SourceKittenError {
     /// An `NSError` object corresponding to this error code.
     var error: NSError {
         switch self {
-        case let .InvalidArgument(description):
+        case .InvalidArgument(let description):
             return SourceKittenErrorCode.InvalidArgument.error([
                 NSLocalizedDescriptionKey: description
             ])
-        case let .ReadFailed(path):
+        case .ReadFailed(let path):
             return SourceKittenErrorCode.ReadFailed.error([
-                NSLocalizedDescriptionKey: "Failed to read file at '\(path)'"
+                NSLocalizedDescriptionKey: "Failed to read file at '\(path.path)'"
             ])
-        case let .DocFailed:
+        case .DocFailed:
             return SourceKittenErrorCode.DocFailed.error([
                 NSLocalizedDescriptionKey: "Failed to generate documentation"
             ])

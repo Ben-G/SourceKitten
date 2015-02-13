@@ -24,7 +24,7 @@ struct DocCommand: CommandType {
             if options.singleFile {
                 return DocCommand.runSwiftSingleFile(args)
             }
-            let moduleName: String? = countElements(options.moduleName) > 0 ? options.moduleName : nil
+            let moduleName: String? = count(options.moduleName) > 0 ? options.moduleName : nil
             return DocCommand.runSwiftModule(moduleName, args: args)
         }
     }

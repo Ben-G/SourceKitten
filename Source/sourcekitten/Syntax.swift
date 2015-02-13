@@ -17,7 +17,7 @@ struct SyntaxCommand: CommandType {
 
     func run(mode: CommandMode) -> Result<()> {
         return SyntaxOptions.evaluate(mode).flatMap { options in
-            if countElements(options.file) > 0 {
+            if count(options.file) > 0 {
                 if let file = File(path: options.file.absolutePathRepresentation()) {
                     println(SyntaxMap(file: file))
                 } else {
@@ -25,7 +25,7 @@ struct SyntaxCommand: CommandType {
                 }
                 return success(())
             }
-            if countElements(options.text) > 0 {
+            if count(options.text) > 0 {
                 println(SyntaxMap(file: File(contents: options.text)))
                 return success(())
             }
