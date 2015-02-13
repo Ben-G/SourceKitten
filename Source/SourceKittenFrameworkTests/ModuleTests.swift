@@ -26,9 +26,7 @@ class ModuleTests: XCTestCase {
         XCTAssertNotNil(jsonArray, "JSON should be propery parsed")
     }
 
-    // This test usually fails around i=2 because SourceKitService becomes inconsistent after a while.
-    // I'd love to find a work-around for this, but so far nothing has worked.
-    // Help greatly appreciated.
+    // This test previously failed, but succeeds as of Swift 1.2b1. Keeping as a regression test.
 //    func testSourceKittenReturnsSameResponse() {
 //        var lastResponse = ""
 //        for i in 0..<5 {
