@@ -15,7 +15,7 @@ class SwiftDocsTests: XCTestCase {
     func testSingleSwiftFileDocs() {
         let docs = SwiftDocs(file: File(path: fixturesDirectory + "Bicycle.swift")!, arguments: ["-j4", fixturesDirectory + "Bicycle.swift"])
         let escapedFixturesDirectory = fixturesDirectory.stringByReplacingOccurrencesOfString("/", withString: "\\/")
-        let comparisonString = (docs.description + "\n").stringByReplacingOccurrencesOfString(escapedFixturesDirectory, withString: "") as NSString
+        let comparisonString = (docs.description + "\n").stringByReplacingOccurrencesOfString(escapedFixturesDirectory, withString: "")
         let expected = File(path: fixturesDirectory + "Bicycle.json")!.contents
         let actualDocsObject = NSJSONSerialization.JSONObjectWithData(comparisonString.dataUsingEncoding(NSUTF8StringEncoding)!, options: nil, error: nil)! as! NSDictionary
         let expectedDocsObject = NSJSONSerialization.JSONObjectWithData(expected.dataUsingEncoding(NSUTF8StringEncoding)!, options: nil, error: nil)! as! NSDictionary
